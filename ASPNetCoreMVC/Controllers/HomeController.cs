@@ -1,4 +1,5 @@
 ﻿using ASPNetCoreMVC.Models;
+using ASPNetCoreMVC.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -14,9 +15,14 @@ namespace ASPNetCoreMVC.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        //Controller tarafında yapılması beklenen işlemler için sürekli nesne üretimi olmaması ve daha düzenli bir görünüm için dependency injection kullanılarak servis sınıfları oluşturulur.
+        private readonly IHomeService _service;
+        public HomeController(
+            ILogger<HomeController> logger, 
+            IHomeService service)
         {
             _logger = logger;
+            _service = service;
         }
 
         public IActionResult Index()
@@ -42,18 +48,23 @@ namespace ASPNetCoreMVC.Controllers
 
         public IActionResult Contact()
         {
-            ContactViewModel model = new ContactViewModel();
-            model.Title = "Contact Us!!!";
-            model.SubTitle = "Lorem ipsum dolor sit amed.";
-            model.Email = "a@a.net";
-            return View(model);
+            //ContactViewModel model = new ContactViewModel();
+            //model.Title = "Contact Us!!!";
+            //model.SubTitle = "Lorem ipsum dolor sit amed.";
+            //model.Email = "a@a.net";
+            return View(_service.GetContactPage());
         }
 
         [HttpPost]
-        public IActionResult Contact(ContactViewModel collection)
+        public IActionResult ContactResponse(ContactFormViewModel collection)
         {
             
             return View(collection);
+        }
+
+        public IActionResult Signup()
+        {
+            return View();
         }
     }
 }

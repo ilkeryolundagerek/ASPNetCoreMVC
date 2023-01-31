@@ -1,0 +1,37 @@
+﻿@model ContactFormViewModel
+
+<form asp-action="ContactResponse" asp-controller="Home">
+    <div>
+        <label asp-for="FormFirstname"></label>
+        <input asp-for="FormFirstname" />
+        <span asp-validation-for="FormFirstname" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="FormLastname"></label>
+        <input asp-for="FormLastname" />
+        <span asp-validation-for="FormLastname" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="FormEMail"></label>
+        <input asp-for="FormEMail" />
+        <span asp-validation-for="FormEMail" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="FormPhone"></label>
+        <input asp-for="FormPhone" />
+        <span asp-validation-for="FormPhone" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="FormSubject"></label>
+        <input asp-for="FormSubject" />
+        <span asp-validation-for="FormSubject" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="FormMessage"></label>
+        <textarea asp-for="FormMessage"></textarea>
+        <span asp-validation-for="FormMessage" class="text-danger"></span>
+    </div>
+    <div>
+        <button class="btn btn-dark" type="submit">Send</button>
+    </div>
+</form>
