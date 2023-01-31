@@ -1,0 +1,52 @@
+﻿@model ContactViewModel
+@{
+    ViewData["Title"] = Model.Title;
+}
+<h1>@Model.Title</h1>
+<h5>@Model.SubTitle</h5>
+<hr />
+<div class="row g-3">
+    <div class="col-md-6">
+        @if (!string.IsNullOrEmpty(Model.Email))
+        {
+            <h6>E-Mail Address:</h6>
+            <p><a href="mailto:@Model.Email">@Model.Email</a></p>
+        }
+    </div>
+    <div class="col-md-6">
+        <form asp-action="Contact" asp-controller="Home">
+            <div>
+                <label asp-for="FormFirstname"></label>
+                <input asp-for="FormFirstname" />
+                <span asp-validation-for="FormFirstname" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="FormLastname"></label>
+                <input asp-for="FormLastname" />
+                <span asp-validation-for="FormLastname" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="FormEMail"></label>
+                <input asp-for="FormEMail" />
+                <span asp-validation-for="FormEMail" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="FormSubject"></label>
+                <input asp-for="FormSubject" />
+                <span asp-validation-for="FormSubject" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="FormMessage"></label>
+                <textarea asp-for="FormMessage"></textarea>
+                <span asp-validation-for="FormMessage" class="text-danger"></span>
+            </div>
+            <div>
+                <button class="btn btn-dark" type="submit">Send</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+                }
